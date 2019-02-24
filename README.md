@@ -35,10 +35,10 @@ Date limite de rendu de votre code sur le dépôt GitHub : **Vendredi 8 mars à 
 
 L’objectif de ce TP est d’écrire un algorithme qui résout par exploration totale n’importe quel "puzzle". Nous allons
 illustrer cet algorithme sur un puzzle très simple : un [taquin](https://fr.wikipedia.org/wiki/Taquin) en une dimension.
-Puis, vous implémenterez dans les Exercices [1](https://github.com/IUTInfoMontp-M2103/TP6Correction#exercice-1),
-[2](https://github.com/IUTInfoMontp-M2103/TP6Correction#exercice-2) et
-[3](https://github.com/IUTInfoMontp-M2103/TP6Correction#exercice-3) cet algorithme sur un taquin en deux dimensions.
-Enfin, vous généraliserez cet algorithme à n’importe quel puzzle dans l'[Exercice 4](https://github.com/IUTInfoMontp-M2103/TP6Correction#exercice-4).
+Puis, vous implémenterez dans les Exercices [1](https://github.com/IUTInfoMontp-M2103/TP6#exercice-1),
+[2](https://github.com/IUTInfoMontp-M2103/TP6#exercice-2) et
+[3](https://github.com/IUTInfoMontp-M2103/TP6#exercice-3) cet algorithme sur un taquin en deux dimensions.
+Enfin, vous généraliserez cet algorithme à n’importe quel puzzle dans l'[Exercice 4](https://github.com/IUTInfoMontp-M2103/TP6#exercice-4).
 
 Reprenons l’exemple d’un taquin en une dimension à 5 cases. La position initiale (notée `1 2 * 3 4` ) du taquin est
 dessinée en haut de la figure ci-dessous :
@@ -53,7 +53,7 @@ examiner
 * __dejaVues__ : qui va contenir à chaque instant l’ensemble des configurations déjà examinées.
 
 On initialise `frontiere` et `dejaVues` avec la configuration initiale, et on maintiendra l'invariant que `frontiere`
-est un sous ensemble de `dejaVues`.  À chaque étape, on extrait une configuration de la frontière, on en génère toutes
+est un sous-ensemble de `dejaVues`.  À chaque étape, on extrait une configuration de la frontière, on en génère toutes
 les configurations "filles" c’est-à-dire les configurations atteignables en effectuant _un seul mouvement valide_, puis
 on ajoute à  `frontiere` et à `dejaVues`  toutes les configurations filles qui n’ont pas été déjà vues. Les ensembles de
 configurations _a)_, _b)_ et _c)_, délimités en pointillés, indiquent l’évolution de la frontière lors des 3 premières
