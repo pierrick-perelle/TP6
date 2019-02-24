@@ -33,15 +33,15 @@ LIEN GITHUB CLASSROOM À AJOUTER ICI
 
 Date limite de rendu de votre code sur le dépôt GitHub : **Vendredi 8 mars à 23h00**
 
-L’objectif de ce tp est d’écrire un algorithme qui résout par exploration totale n’importe quel "puzzle". Nous allons
+L’objectif de ce TP est d’écrire un algorithme qui résout par exploration totale n’importe quel "puzzle". Nous allons
 illustrer cet algorithme sur un puzzle très simple : un [taquin](https://fr.wikipedia.org/wiki/Taquin) en une dimension.
-Puis, vous implémenterez dans les exercices [1](https://github.com/IUTInfoMontp-M2103/TP6Correction#exercice-1),
+Puis, vous implémenterez dans les Exercices [1](https://github.com/IUTInfoMontp-M2103/TP6Correction#exercice-1),
 [2](https://github.com/IUTInfoMontp-M2103/TP6Correction#exercice-2) et
 [3](https://github.com/IUTInfoMontp-M2103/TP6Correction#exercice-3) cet algorithme sur un taquin en deux dimensions.
 Enfin, vous généraliserez cet algorithme à n’importe quel puzzle dans l'[Exercice 4](https://github.com/IUTInfoMontp-M2103/TP6Correction#exercice-4).
 
 Reprenons l’exemple d’un taquin en une dimension à 5 cases. La position initiale (notée `1 2 * 3 4` ) du taquin est
-déssinée en haut de la figure ci-dessous :
+dessinée en haut de la figure ci-dessous :
 
 ![](ressources/fig_taquin.png)
 
@@ -61,7 +61,7 @@ configurations _a)_, _b)_ et _c)_, délimités en pointillés, indiquent l’év
 Remarquez que les configurations barrées ne sont pas ajoutées à la `frontiere` (ni à `dejaVues`) puisqu’elles sont déjà
 présentes dans `dejaVues` au moment où l'on essaye de les ajouter. L’algorithme se termine lorsqu’il atteint une
 configuration gagnante, ou lorsque la frontière devient vide. Ainsi on obtient une structure arborescente (ou arbre
-d'exploration) representant l'ensemble de mouvements valides obtenus à partir de la racine (configuration initiale). 
+d'exploration) représentant l'ensemble de mouvements valides obtenus à partir de la racine (configuration initiale). 
 
 **Remarque** : Certaines configurations du taquin ne sont pas résolubles. En une dimension il est facile de voir que les
 cases ne peuvent pas se croiser (donc par exemple la configuration `2 1 * 3 4` ne peut pas être résolue) et en deux
@@ -77,13 +77,13 @@ le "_père_" de `c2` est `c1`. Un maillon de cette liste chaînée est donc un c
 ### Exercice 1
 La classe `Taquin` vous est donnée dans le package `fr.umontpellier.iut`. Vous devez la compléter comme suit :
 
-1. Ajoutez un attribut de type `int[][]` qui representera le plateau de jeu et implémentez un
+1. Ajoutez un attribut de type `int[][]` qui représentera le plateau de jeu et implémentez un
 constructeur sans paramètres qui place le taquin dans une configuration initiale de votre choix. On representera le trou
 du plateau par le chiffre `0`. 
 
 2. Redéfinissez la méthode `toString()` (de la classe `Object`) afin d'afficher le contenu du plateau de `Taquin`.
 
-3. Completez la méthode `public boolean estGagnant()` afin qu'elle retourne _vrai_ si le plateau est dans une
+3. Complétez la méthode `public boolean estGagnant()` afin qu'elle retourne _vrai_ si le plateau est dans une
 configuration gagnante et _faux_ sinon. Pour un taquin en deux dimensions, la position gagnante est la configuration :
 
 ```
@@ -102,7 +102,7 @@ avec un autre passé en paramètre.
     
     **Astuce :** Nous vous conseillons d'utiliser votre IDE pour redéfinir `equals(Object o)` et de prendre le temps de
     comprendre le code qu'il vous générera. Vous ajusterez cette redéfinition, en fonction de la logique du code de votre
-    classe `Taquin`. Prêtez également attention à la rédéfinition de la méthode `public int hashCode()` de `Object` qui
+    classe `Taquin`. Prêtez également attention à la redéfinition de la méthode `public int hashCode()` de `Object` qui
     va être faite. Discutez-en également avec votre enseignant (voir également le
     [cours](http://pageperso.lif.univ-mrs.fr/~petru.valicov/Cours/M2103/BPOO_Heritage_Polymorphisme_x4.pdf)).
       
@@ -135,7 +135,7 @@ pour initialiser ces deux attributs.
 3. Complétez la méthode `public void mettreAJour(ArrayList<Couple> frontiere, ArrayList<Taquin> tab, ArrayList<Taquin> dejaVus)`
 pour qu'elle respecte la spécification ci-dessous. Avant de lire cette spécification, considérons l'exemple dans lequel 
    * `coupleGauche` représente le couple dont le taquin est celui de gauche dans la frontière _b)_ de l'exemple
-   ci-dessus (et son prédecesseur pointe sur la racine)  
+   ci-dessus (et son prédécesseur pointe sur la racine)  
    * `frontiere` est l'ensemble de `Couple` dont les taquins sont ceux de _b)_ 
    * `tab` est l'ensemble des 2 taquins fils du taquin contenu dans `coupleGauche` (`* 1 2 3 4` et `1 2 * 3 4`)
    * `dejaVus` est l'ensemble des 3 taquins de _a)_ U _b)_.
@@ -186,14 +186,14 @@ si `taquin` n’est pas faisable, ou la liste des positions successives qui mèn
    l'exploration de l'arbre se fera en largeur (tous les taquins à distance 1 de la racine, puis tous les taquins
    à distance 2, etc.).
    
-   Regardez dans votre code de la question précédente si votre frontière est gérée en _pile_ ou en _file_, et réflechissez
+   Regardez dans votre code de la question précédente si votre frontière est gérée en _pile_ ou en _file_, et réfléchissez
    à la politique de gestion (_pile_ vs _file_) que vous préférez.
 
 4. Redéfinissez la méthode `toString()` afin d'afficher la solution.
 
 5. Testez d'abord avec des taquins que l'on peut résoudre. Pour cela, créez un taquin à distance 1 de la position 
 gagnante (c'est-à-dire nécessitant un mouvement pour le résoudre), puis à distance 2, puis à distance _k_ > 2.
-Ensuite, testez avec un taquin quelconque. Si votre algorithme s'execute pendant plusieurs minutes, comment essayer de
+Ensuite, testez avec un taquin quelconque. Si votre algorithme s’exécute pendant plusieurs minutes, comment essayer de
 savoir s'il est dans une boucle infinie ou si "quelque chose" progresse ? Quelle(s) donnée(s) pourriez vous afficher
 (même si cela ralentit énormément l'algorithme) pour répondre à cette question ?
 
@@ -204,7 +204,7 @@ Maintenant nous allons généraliser cette stratégie à la résolution d'autres
 historique du programme écrit précédemment, nous allons travailler dans un package différent.
 
 1. Créez un nouveau package `fr.umontpellier.iut.exo4` et copiez/collez les 3 classes écrites précédemment. Pour faire
- cela correctement, la manière la plus simple est de selectionner **en même temps** les 3 classes dans l'IDE
+ cela correctement, la manière la plus simple est de sélectionner **en même temps** les 3 classes dans l'IDE
  &rightarrow; _Copier_  &rightarrow; _Coller_ dans le package. Quelque soit la manière dont vous allez procéder, l'IDE
  vous signalera des duplications de code (logique, car c'est ce qui vous avez fait), mais _dans ce cas_ (et pour
  _ce genre de duplications demandées_) vous
@@ -234,17 +234,17 @@ _1 &rightarrow; 2_, _1 &rightarrow; 2_ ne l'est pas.
 
 4. Écrivez une classe `Hanoi` qui modélise ce jeu et qui implémente l'interface `JeuPuzzle`. Pour modéliser l'état
 du jeu, on suggère d'utiliser trois `ArrayList<Integer>` contenant chacune les numéros des disques présents sur le poteau
-correspondant. Vous pouvez egalement ajouter un attribut `private int taille` pour indiquer le nombre initial de disques.
+correspondant. Vous pouvez également ajouter un attribut `private int taille` pour indiquer le nombre initial de disques.
 Une configuration du jeu correspondrait aux 3 poteaux contenant en tout les N disques. Chaque mouvement de disque
 autorisé d'un poteau vers un autre est une nouvelle configuration (nouveau fils donc). 
  
-5. Modfiez la classe principale pour maintenant tester la résolution de Hanoï (commencez par 3 disques sur le poteau gauche).
+5. Modifiez la classe principale pour maintenant tester la résolution de Hanoï (commencez par 3 disques sur le poteau gauche).
 On constate (avec joie !) qu'il n'y a pas à modifier l'algorithme de résolution puisqu'il fonctionne de façon "transparente"
 pour tout `JeuPuzzle`.
 
 6. Dessinez le diagramme de classes de cet exercice.
 
 **Remarque** : Cette façon de programmer, en proposant une interface d'algorithme générale qui sera ensuite implémentée
-différement, et dont les implémentaions pourront être interchangées "à la volée" par l'utilisateur dans la classe cliente
+différemment, et dont les implémentations pourront être interchangées "à la volée" par l'utilisateur dans la classe cliente
 (ici `App`), fait référence au modèle de conception communément appelé
 [_Stratégie_](https://en.wikipedia.org/wiki/Strategy_pattern). 
